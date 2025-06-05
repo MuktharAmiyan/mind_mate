@@ -60,8 +60,7 @@ class MentalEnergyGraphView extends StatelessWidget {
                               .transparent, // Keep background transparent for overlay
                           child: LayoutBuilder(
                             builder: (context, constraints) {
-                              final totalSegments =
-                                  5; // Assuming total duration is 5
+                              final totalSegments = _kdays.length;
                               return Stack(
                                 children: segments.map((range) {
                                   final left =
@@ -130,8 +129,8 @@ class MentalEnergyGraphView extends StatelessWidget {
     'Sun',
   ];
   static const Map<String, List<({int start, int end})>> _kSampleData = {
-    'mental': [(start: 0, end: 1), (start: 3, end: 3)],
-    'emotinal': [(start: 1, end: 2), (start: 4, end: 4)],
+    'mental': [(start: 0, end: 1), (start: 3, end: 3), (start: 5, end: 6)],
+    'emotinal': [(start: 1, end: 2), (start: 4, end: 6)],
     'creative': [(start: 0, end: 1), (start: 3, end: 4)],
   };
 
