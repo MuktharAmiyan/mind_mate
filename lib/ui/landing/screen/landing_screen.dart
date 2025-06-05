@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mind_mate/routing/routes.dart';
 import 'package:mind_mate/ui/core/themes/colors.dart';
 import 'package:mind_mate/ui/core/themes/dimens.dart';
 import 'package:mind_mate/ui/core/ui/app_bar.dart';
@@ -14,30 +16,17 @@ class LandingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void goToHomeScreen() => context.go(Routes.discover);
     return Scaffold(
       appBar: _buildAppBar(),
       body: SafeArea(
         child: Column(
           children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Stack(
-                  children: [
-                    Positioned.fill(
-                      child: Image.asset(
-                        Assets.landingVector,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Align(alignment: Alignment.topCenter, child: AppLogo()),
-                  ],
-                ),
-              ),
-            ),
+            _buildVector(),
             Padding(
               padding: Dimens.of(context).edgeInsetsScreenHorizontal,
               child: Column(
+                spacing: Dimens.smallGap,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
@@ -75,7 +64,7 @@ class LandingScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: AppGradientButton(
-                    onTap: () {},
+                    onTap: goToHomeScreen,
                     child: Row(
                       spacing: Dimens.smallGap,
                       children: [
@@ -106,6 +95,20 @@ class LandingScreen extends StatelessWidget {
       ),
     );
   }
+
+  Widget _buildVector() => Expanded(
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.asset(Assets.landingVector, fit: BoxFit.cover),
+          ),
+          Align(alignment: Alignment.topCenter, child: AppLogo()),
+        ],
+      ),
+    ),
+  );
 
   Widget _buildTitle(String text, BuildContext context) => Text(
     text,
