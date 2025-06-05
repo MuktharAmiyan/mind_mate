@@ -5,6 +5,7 @@ class CustomAppBar extends AppBar {
   CustomAppBar({super.key, super.title, super.actions, Widget? leading})
     : super(
         centerTitle: true,
+        automaticallyImplyLeading: false,
         leadingWidth: kToolbarHeight + Dimens.smallPadding,
         leading: leading != null
             ? Padding(

@@ -52,7 +52,7 @@ class LandingScreen extends StatelessWidget {
                       Card.outlined(
                         color: Colors.transparent,
                         child: const Padding(
-                          padding: EdgeInsets.all(12.0),
+                          padding: EdgeInsets.all(10.0),
                           child: Icon(Icons.chevron_right),
                         ),
                       ),

@@ -5,6 +5,7 @@ abstract final class Routes {
   static const music = '/music';
   static const discover = '/discover';
   static const landing = '/landing';
+  static const dailyReflection = '/daily-reflection';
 
   static const navigationbarItems = [home, today, award, music, discover];
 }
