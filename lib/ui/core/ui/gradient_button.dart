@@ -4,10 +4,12 @@ import 'package:mind_mate/ui/core/themes/colors.dart';
 class AppGradientButton extends StatelessWidget {
   final VoidCallback onTap;
   final Widget child;
+  final BoxShape? shape;
   const AppGradientButton({
     super.key,
     required this.onTap,
     required this.child,
+    this.shape,
   });
 
   @override
@@ -22,6 +24,7 @@ class AppGradientButton extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           borderRadius: radiusGeometry,
+
           child: Container(
             height: 75,
             padding: const EdgeInsets.all(8.0),
@@ -29,7 +32,8 @@ class AppGradientButton extends StatelessWidget {
               gradient: LinearGradient(
                 colors: AppColors.containerGradientColors,
               ),
-              borderRadius: radiusGeometry,
+              borderRadius: shape == null ? radiusGeometry : null,
+              shape: shape ?? BoxShape.rectangle,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

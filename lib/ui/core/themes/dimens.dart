@@ -25,6 +25,10 @@ abstract final class Dimens {
   EdgeInsets get edgeInsetsScreenHorizontal =>
       EdgeInsets.symmetric(horizontal: paddingScreenHorizontal);
 
+  /// Horizontal symmetric padding for screen
+  EdgeInsets get edgeInsetsScreenVerticall =>
+      EdgeInsets.symmetric(vertical: paddingScreenVertical);
+
   /// Symmetric padding for screen edges
   EdgeInsets get edgeInsetsScreenSymmetric => EdgeInsets.symmetric(
     horizontal: paddingScreenHorizontal,
@@ -40,6 +44,8 @@ abstract final class Dimens {
         > 600 && < 840 => desktop,
         _ => mobile,
       };
+
+  static BorderRadius containerRadius = BorderRadius.circular(26);
 }
 
 /// Mobile dimensions
