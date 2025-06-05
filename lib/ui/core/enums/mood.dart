@@ -13,7 +13,7 @@ enum Mood {
 
     Mood.shied => Color(0xFF89AAAD),
 
-    Mood.good => Color(0xFFDDDB76),
+    Mood.good => Colors.lime,
     Mood.stressed => Color(0xFFD8B4BF),
   };
 

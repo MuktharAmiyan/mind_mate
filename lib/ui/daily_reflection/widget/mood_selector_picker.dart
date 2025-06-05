@@ -59,119 +59,122 @@ class MoodSelectorPicker extends StatelessWidget {
     );
 
     return Padding(
-      padding: const EdgeInsets.only(top: 100),
-      child: Stack(
-        children: [
-          Positioned.fill(child: buildBackgroundElements()),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Stack(
-              children: [
-                for (var e in Mood.values) ...[
-                  ClipPath(
-                    clipper: ArcClipper(
-                      startAngle: (e.index * Mood.sweepAngle) + 45,
-                      sweepAngle: Mood.sweepAngle,
-                    ),
-                    child: GestureDetector(
-                      onTap: () => onChange(e),
-                      child: CircleAvatar(
-                        radius: radius,
-                        backgroundColor: Colors.transparent,
+      padding: const EdgeInsets.only(top: 100, bottom: 50),
+      child: SizedBox(
+        width: 500,
+        child: Stack(
+          children: [
+            Positioned.fill(child: buildBackgroundElements()),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Stack(
+                children: [
+                  for (var e in Mood.values) ...[
+                    ClipPath(
+                      clipper: ArcClipper(
+                        startAngle: (e.index * Mood.sweepAngle) + 45,
+                        sweepAngle: Mood.sweepAngle,
+                      ),
+                      child: GestureDetector(
+                        onTap: () => onChange(e),
+                        child: CircleAvatar(
+                          radius: radius,
+                          backgroundColor: Colors.transparent,
+                        ),
                       ),
                     ),
-                  ),
-                  Builder(
-                    builder: (context) {
-                      final angleDeg =
-                          (e.index * Mood.sweepAngle + Mood.sweepAngle / 2) +
-                          45;
-                      final angleRad = angleDeg * pi / 180;
+                    Builder(
+                      builder: (context) {
+                        final angleDeg =
+                            (e.index * Mood.sweepAngle + Mood.sweepAngle / 2) +
+                            45;
+                        final angleRad = angleDeg * pi / 180;
 
-                      final paddingFactor = 0.68;
-                      final edgeOffset = Offset(
-                        center.dx + radius * paddingFactor * cos(angleRad),
-                        center.dy + radius * 0.80 * sin(angleRad),
-                      );
+                        final paddingFactor = 0.68;
+                        final edgeOffset = Offset(
+                          center.dx + radius * paddingFactor * cos(angleRad),
+                          center.dy + radius * 0.80 * sin(angleRad),
+                        );
 
-                      return Positioned(
-                        left:
-                            edgeOffset.dx -
-                            30, // adjust horizontal centering if needed
-                        top:
-                            edgeOffset.dy -
-                            10, // adjust vertical centering if needed
-                        child: IgnorePointer(
-                          child: Text(
-                            e.name.toUpperCase(),
-                            style: Theme.of(context).textTheme.titleMedium
-                                ?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: e.color,
-                                ),
+                        return Positioned(
+                          left:
+                              edgeOffset.dx -
+                              30, // adjust horizontal centering if needed
+                          top:
+                              edgeOffset.dy -
+                              10, // adjust vertical centering if needed
+                          child: IgnorePointer(
+                            child: Text(
+                              e.name.toUpperCase(),
+                              style: Theme.of(context).textTheme.titleMedium
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: e.color,
+                                  ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ],
+              ),
+            ),
+            Positioned.fill(
+              child: IgnorePointer(
+                child: Center(
+                  child: Stack(
+                    children: [
+                      for (var e in Mood.values) ...[
+                        ClipPath(
+                          clipper: ArcClipper(
+                            startAngle: (e.index * Mood.sweepAngle) + 45,
+                            sweepAngle: Mood.sweepAngle,
+                          ),
+                          child: CircleAvatar(
+                            radius: radius - 80,
+                            backgroundColor: e.color.withValues(alpha: 0.6),
                           ),
                         ),
-                      );
-                    },
-                  ),
-                ],
-              ],
-            ),
-          ),
-          Positioned.fill(
-            child: IgnorePointer(
-              child: Center(
-                child: Stack(
-                  children: [
-                    for (var e in Mood.values) ...[
-                      ClipPath(
-                        clipper: ArcClipper(
-                          startAngle: (e.index * Mood.sweepAngle) + 45,
-                          sweepAngle: Mood.sweepAngle,
-                        ),
-                        child: CircleAvatar(
-                          radius: radius - 80,
-                          backgroundColor: e.color,
-                        ),
-                      ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
               ),
             ),
-          ),
-          Positioned.fill(
-            child: IgnorePointer(
-              child: Center(
-                child: Card(
-                  color: Colors.white,
-                  shape: CircleBorder(),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Mood',
-                          style: Theme.of(context).textTheme.titleSmall
-                              ?.copyWith(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          value.name.toUpperCase(),
-                          style: Theme.of(context).textTheme.titleSmall
-                              ?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: value.color,
-                              ),
-                        ),
-                      ],
+            Positioned.fill(
+              child: IgnorePointer(
+                child: Center(
+                  child: Card(
+                    color: Colors.white,
+                    shape: CircleBorder(),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Mood',
+                            style: Theme.of(context).textTheme.titleSmall
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            value.name.toUpperCase(),
+                            style: Theme.of(context).textTheme.titleSmall
+                                ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: value.color,
+                                ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
