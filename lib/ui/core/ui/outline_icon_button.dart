@@ -14,7 +14,7 @@ class AppOutlineIconButton extends StatelessWidget {
     return IconButton.outlined(
       style: OutlinedButton.styleFrom(
         side: BorderSide(color: Colors.grey.shade200),
-        padding: EdgeInsets.all(12),
+        padding: EdgeInsets.all(14),
       ),
       onPressed: onTap,
       icon: child,

@@ -18,85 +18,99 @@ class LandingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     void goToHomeScreen() => context.go(Routes.discover);
     return Scaffold(
+      extendBody: true,
       appBar: _buildAppBar(),
       body: SafeArea(
-        child: Column(
-          children: [
-            _buildVector(),
-            Padding(
-              padding: Dimens.of(context).edgeInsetsScreenHorizontal,
-              child: Column(
-                spacing: Dimens.smallGap,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildTitle('Unlock the Power of', context),
-                      Row(
-                        spacing: Dimens.smallGap,
-                        children: [
-                          _buildTitle('Your Mind', context),
-                          ...[
-                            Assets.brainEmoji,
-                            Assets.hourglassEmoji,
-                            Assets.smileEmoji,
-                          ].map(
-                            (e) => CircleAvatar(
-                              backgroundColor: AppColors.surfaceContainerColor,
-                              child: Image.asset(e, width: 25),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-
-                  Text(
-                    'Track your focus, balance your emotions, and train your mental clarity - all in one place.',
-                    style: Theme.of(context).textTheme.labelLarge,
-                  ),
-                ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildVector(),
+              Padding(
+                padding: Dimens.of(context).edgeInsetsScreenHorizontal,
+                child: Column(
+                  spacing: Dimens.smallGap,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [_buildTitle(context), _buildSubTitle(context)],
+                ),
               ),
-            ),
-            SizedBox(height: Dimens.paddingHorizontal),
-            Row(
-              children: [
-                Expanded(
-                  child: AppGradientButton(
-                    onTap: goToHomeScreen,
-                    child: Row(
-                      spacing: Dimens.smallGap,
-                      children: [
-                        Card.outlined(
-                          color: Colors.transparent,
-                          child: const Padding(
-                            padding: EdgeInsets.all(12.0),
-                            child: Icon(Icons.chevron_right),
-                          ),
-                        ),
-                        Text("Get Started"),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
+            ],
+          ),
+        ),
+      ),
+
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: Dimens.of(context).edgeInsetsScreenHorizontal,
+          child: Row(
+            children: [
+              Expanded(
+                child: AppGradientButton(
+                  onTap: goToHomeScreen,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    spacing: Dimens.smallGap,
                     children: [
-                      TextButton(onPressed: () {}, child: Text('Skip')),
+                      Card.outlined(
+                        color: Colors.transparent,
+                        child: const Padding(
+                          padding: EdgeInsets.all(12.0),
+                          child: Icon(Icons.chevron_right),
+                        ),
+                      ),
+                      Text("Get Started"),
                     ],
                   ),
                 ),
-              ],
-            ),
-          ],
+              ),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [TextButton(onPressed: () {}, child: Text('Skip'))],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildVector() => Expanded(
+  Widget _buildTitle(BuildContext context) => RichText(
+    text: TextSpan(
+      text: 'Unlock the Power of Your Mind',
+      style: Theme.of(
+        context,
+      ).textTheme.displaySmall?.copyWith(fontWeight: FontWeight.w900),
+      children: [
+        WidgetSpan(
+          child: Wrap(
+            spacing: Dimens.smallGap,
+            children: [
+              SizedBox(width: Dimens.smallGap),
+              ...[
+                Assets.brainEmoji,
+                Assets.hourglassEmoji,
+                Assets.smileEmoji,
+              ].map(
+                (e) => CircleAvatar(
+                  backgroundColor: AppColors.surfaceContainerColor,
+                  child: Image.asset(e, width: 25),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
+
+  Widget _buildSubTitle(BuildContext context) => Text(
+    'Track your focus, balance your emotions, and train your mental clarity - all in one place.',
+    style: Theme.of(context).textTheme.labelLarge,
+  );
+
+  Widget _buildVector() => SizedBox(
+    height: 450,
+    width: 450,
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Stack(
@@ -108,13 +122,6 @@ class LandingScreen extends StatelessWidget {
         ],
       ),
     ),
-  );
-
-  Widget _buildTitle(String text, BuildContext context) => Text(
-    text,
-    style: Theme.of(
-      context,
-    ).textTheme.displaySmall?.copyWith(fontWeight: FontWeight.w900),
   );
 
   AppBar _buildAppBar() => CustomAppBar(

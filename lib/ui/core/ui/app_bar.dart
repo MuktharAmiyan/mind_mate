@@ -6,9 +6,11 @@ class CustomAppBar extends AppBar {
     : super(
         centerTitle: true,
         leadingWidth: kToolbarHeight + Dimens.smallPadding,
-        leading: Padding(
-          padding: EdgeInsetsGeometry.only(left: Dimens.smallPadding),
-          child: leading,
-        ),
+        leading: leading != null
+            ? Padding(
+                padding: EdgeInsetsGeometry.only(left: Dimens.smallPadding),
+                child: leading,
+              )
+            : null,
       );
 }

@@ -6,5 +6,8 @@ abstract final class AppTheme {
     scaffoldBackgroundColor: Colors.white,
     textTheme: GoogleFonts.poppinsTextTheme(),
     appBarTheme: AppBarTheme(backgroundColor: Colors.transparent, elevation: 0),
+    dividerTheme: DividerThemeData(
+      color: ThemeData().dividerColor.withValues(alpha: 0.2),
+    ),
   );
 }
