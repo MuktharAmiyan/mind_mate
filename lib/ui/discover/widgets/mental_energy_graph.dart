@@ -22,15 +22,95 @@ class MentalEnergyGraphView extends StatelessWidget {
       child: Column(
         children: [
           _buildHeader(context),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          Stack(
             children: [
-              ..._kdays.map(
-                (e) => Column(
-                  children: [
-                    SizedBox(height: 100, child: VerticalDivider()),
-                    Text(e, style: Theme.of(context).textTheme.labelMedium),
-                  ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ..._kdays.map(
+                    (e) => Column(
+                      children: [
+                        SizedBox(height: 100, child: VerticalDivider()),
+                        Text(e, style: Theme.of(context).textTheme.labelMedium),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Positioned.fill(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0).copyWith(bottom: 15),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ..._kSampleData.entries.map((e) {
+                        final color = switch (e.key) {
+                          'mental' => AppColors.lightGreen,
+                          'emotinal' => AppColors.lightPurple,
+                          'creative' => AppColors.lightBlue,
+                          _ => AppColors.lightGreen,
+                        };
+                        final segments = e.value;
+
+                        return Container(
+                          width: double.infinity,
+                          height: 20,
+                          color: Colors
+                              .transparent, // Keep background transparent for overlay
+                          child: LayoutBuilder(
+                            builder: (context, constraints) {
+                              final totalSegments =
+                                  5; // Assuming total duration is 5
+                              return Stack(
+                                children: segments.map((range) {
+                                  final left =
+                                      (range.start / totalSegments) *
+                                      constraints.maxWidth;
+                                  final width =
+                                      ((range.end - range.start + 1) /
+                                          totalSegments) *
+                                      constraints.maxWidth;
+                                  return Positioned(
+                                    left: left,
+                                    top: 0,
+                                    bottom: 0,
+                                    width: width,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: color,
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
+                              );
+                            },
+                          ),
+                        );
+                      }),
+                      // ..._kSampleData.entries.map((e) {
+                      //   final color = switch (e.key) {
+                      //     'mental' => AppColors.lightGreen,
+                      //     'emotinal' => AppColors.lightPurple,
+                      //     'creative' => AppColors.lightBlue,
+                      //     _ => AppColors.lightGreen,
+                      //   };
+                      //   return Container(
+                      //     width: double.infinity,
+                      //     height: 20,
+                      //     color: color,
+                      //     child: LayoutBuilder(
+                      //       builder: (context, constraints) {
+                      //         return Stack(children: [
+
+                      //         ],);
+                      //       },
+                      //     ),
+                      //   );
+                      // }),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -49,6 +129,12 @@ class MentalEnergyGraphView extends StatelessWidget {
     'Sat',
     'Sun',
   ];
+  static const Map<String, List<({int start, int end})>> _kSampleData = {
+    'mental': [(start: 0, end: 1), (start: 3, end: 3)],
+    'emotinal': [(start: 1, end: 2), (start: 4, end: 4)],
+    'creative': [(start: 0, end: 1), (start: 3, end: 4)],
+  };
+
   Widget _buildHeader(BuildContext context) => Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [

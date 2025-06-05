@@ -10,7 +10,7 @@ abstract final class AppColors {
   static const purple = Colors.purple;
   static const green = Colors.lightGreen;
   static const lightBlue = Color(0xFFB1D8EF);
-  static const surfaceContainerColor = Color.fromARGB(255, 234, 235, 231);
+  static const surfaceContainerColor = Color.fromARGB(255, 244, 245, 240);
 
   static const containerGradientColors = [lightGreen, lightPurple];
 }

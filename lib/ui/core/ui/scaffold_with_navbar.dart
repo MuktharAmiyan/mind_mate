@@ -59,6 +59,10 @@ class ScaffoldWithNavBar extends StatelessWidget {
                         _ => Assets.elipsList,
                       },
                       width: 35,
+                      // ignore: deprecated_member_use
+                      color: selectedIndex == index
+                          ? null
+                          : Colors.grey.shade700,
                     ),
                   ),
                 ),

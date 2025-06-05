@@ -1,16 +1,43 @@
-# mind_mate
+# MindMate UI
 
-A new Flutter project.
+## 🚀 Getting Started
 
-## Getting Started
+To run the project:
 
-This project is a starting point for a Flutter application.
+1. **Clone the repository**
 
-A few resources to get you started if this is your first Flutter project:
+   ```bash
+   git clone https://github.com/muktharamiyan/mind_mate.git
+   cd mind_mate
+   ```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2. **Install dependencies**
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+   ```bash
+   flutter pub get
+   ```
+
+3. **Run the app**
+
+   ```bash
+   flutter run
+   ```
+
+> ✅ This project uses **Flutter 3.x**.
+
+## 📱 Features
+
+- Three screens implemented:
+
+  - **Landing Screen**: This is the initial screen. Pressing the **Get Started** button navigates to the Home Page.
+  - **Home Page**: Currently a placeholder screen. Includes a button to navigate to the Daily Reflection page.
+  - **Discover Page**: Implemented as part of the second page in the task.
+  - **Daily Reflection Page**: Accessible from the Home Page via a text button.
+
+## 🧠 Assumptions
+
+- All logic and data are stubbed, focusing only on UI.
+
+## 🙏 Thank You
+
+Thank you for the opportunity to work on this UI!
