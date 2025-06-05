@@ -5,5 +5,6 @@ abstract final class AppTheme {
   static ThemeData theme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
     textTheme: GoogleFonts.poppinsTextTheme(),
+    appBarTheme: AppBarTheme(backgroundColor: Colors.transparent, elevation: 0),
   );
 }

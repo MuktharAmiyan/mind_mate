@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mind_mate/core/themes/theme.dart';
+import 'package:mind_mate/ui/core/themes/theme.dart';
+import 'package:mind_mate/routing/router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,20 +11,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Mind Mate',
       theme: AppTheme.theme,
-      home: const HomePage(),
       debugShowCheckedModeBanner: false,
+      routerConfig: router(),
     );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: const Text('Home Page')));
   }
 }
