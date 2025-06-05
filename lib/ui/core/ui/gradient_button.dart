@@ -14,7 +14,7 @@ class AppGradientButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BorderRadius radiusGeometry = BorderRadius.circular(26);
+    BorderRadius radiusGeometry = BorderRadius.circular(20);
     return DefaultTextStyle(
       style: Theme.of(
         context,
@@ -26,7 +26,7 @@ class AppGradientButton extends StatelessWidget {
           borderRadius: radiusGeometry,
 
           child: Container(
-            height: 75,
+            height: 70,
             padding: const EdgeInsets.all(8.0),
             decoration: BoxDecoration(
               gradient: LinearGradient(

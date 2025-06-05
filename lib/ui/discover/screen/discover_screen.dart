@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:mind_mate/ui/core/themes/dimens.dart';
 import 'package:mind_mate/ui/core/ui/app_bar.dart';
 import 'package:mind_mate/ui/core/ui/outline_icon_button.dart';
+import 'package:mind_mate/ui/discover/widgets/ai_suggestion.dart';
 import 'package:mind_mate/ui/discover/widgets/focus_area_view.dart';
 import 'package:mind_mate/ui/discover/widgets/mental_energy_graph.dart';
 import 'package:mind_mate/utils/assets.dart';
@@ -29,7 +30,12 @@ class DiscoverScreen extends StatelessWidget {
       ),
       body: ListView(
         padding: Dimens.of(context).edgeInsetsScreenHorizontal,
-        children: [ProfileView(), FocusAreaView(), MentalEnergyGraphView()],
+        children: [
+          ProfileView(),
+          FocusAreaView(),
+          MentalEnergyGraphView(),
+          AiSuggestionView(),
+        ],
       ),
     );
   }
